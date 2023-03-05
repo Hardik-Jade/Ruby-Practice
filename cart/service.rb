@@ -8,14 +8,13 @@ $cart_list = []
 # INVENTORY RELATED FUNCTIONS
 # -------------------------------------------------------s
 def add_product(name, quantity, price)
-  {'name' => name , 'quantity' => quantity, 'price' => price}
-
+  { 'name' => name, 'quantity' => quantity, 'price' => price }
 end
 
 def view_inventory(product_list)
   puts "Id \t Name \t Quantity \t Price"
   puts '------------------------------------------'
-  product_list.each_with_index do |item,index|
+  product_list.each_with_index do |item, index|
     puts "#{index} \t #{item['name']} \t #{item['quantity']} \t\t #{item['price']}"
   end
   puts '------------------------------------------'
@@ -29,11 +28,11 @@ def add_to_cart(index, quantity)
   check_item = $product_list.at(index)
   if check_item && check_item['quantity'] >= quantity
     $cart_list.push({
-      'id' => index,
-      'name' => check_item['name'],
-      'quantity' => quantity,
-      'price' => (check_item['price'] * quantity)
-    })
+                      'id' => index,
+                      'name' => check_item['name'],
+                      'quantity' => quantity,
+                      'price' => (check_item['price'] * quantity)
+                    })
     $product_list.at(index)['quantity'] = check_item['quantity'] - quantity
     return true
   end
@@ -77,5 +76,4 @@ def checkout(discount)
   puts "total bill is #{total}"
   true
 end
-# -------------------------------------------------------s
-
+# -------------------------------------------------------
